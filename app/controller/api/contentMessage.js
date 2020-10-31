@@ -163,7 +163,7 @@ let ContentMessageController = {
      *    "server_time": 1543372263586,
      *    "data": {}
      *}
-     * @apiSampleRequest http://localhost:8080/api/contentMessage/postMessages
+     * @apiSampleRequest http://localhost:10003/api/contentMessage/postMessages
      * @apiVersion 1.0.0
      */
     async postMessages(ctx, app) {
@@ -253,11 +253,6 @@ let ContentMessageController = {
             // siteFunc.addSiteMessage('3', ctx.session.user, passiveUser, targetMessage.id, {
             //     targetMediaType: '1'
             // });
-
-            await ctx.service.userMessageContent.create({
-                content_id: fields.contentId,
-                user_id: ctx.session.user.id
-            })
 
             let returnMessage = await ctx.service.message.item({
                 query: {
