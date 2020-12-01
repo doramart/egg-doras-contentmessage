@@ -163,7 +163,7 @@ let ContentMessageController = {
      *    "server_time": 1543372263586,
      *    "data": {}
      *}
-     * @apiSampleRequest http://localhost:8080/api/contentMessage/postMessages
+     * @apiSampleRequest http://localhost:10003/api/contentMessage/postMessages
      * @apiVersion 1.0.0
      */
     async postMessages(ctx, app) {
@@ -226,7 +226,7 @@ let ContentMessageController = {
                     query: {
                         id: fields.replyAuthor
                     },
-                    attributes: ['id', 'userName', 'category', 'group', 'logo', 'createdAt', 'enable', 'state', 'email']
+                    attributes: ['id', 'userName', 'group', 'logo', 'createdAt', 'enable', 'state', 'email']
                 })
             } else if (fields.adminReplyAuthor) {
                 replyAuthor = await ctx.service.adminUser.item({
@@ -241,9 +241,9 @@ let ContentMessageController = {
                 await ctx.helper.reqJsonData('mailTemplate/sendEmail', {
                     tempkey: "6",
                     info: {
-                        replyAuthor_id: replyAuthor,
+                        replyAuthor: replyAuthor,
                         content: contentInfo,
-                        author_id: ctx.session.user
+                        author: ctx.session.user
                     }
                 }, "post");
             }
@@ -253,11 +253,6 @@ let ContentMessageController = {
             // siteFunc.addSiteMessage('3', ctx.session.user, passiveUser, targetMessage.id, {
             //     targetMediaType: '1'
             // });
-
-            await ctx.service.userMessageContent.create({
-                content_id: fields.contentId,
-                user_id: ctx.session.user.id
-            })
 
             let returnMessage = await ctx.service.message.item({
                 query: {
