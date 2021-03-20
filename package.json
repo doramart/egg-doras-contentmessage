@@ -1,6 +1,6 @@
 {
   "name": "egg-doras-contentmessage",
-  "version": "1.0.1",
+  "version": "1.0.8",
   "description": "contentMessage",
   "eggPlugin": {
     "name": "doraContentMessage"
@@ -11,7 +11,6 @@
     "egg-plugin"
   ],
   "dependencies": {
-    
     "moment": "^2.24.0",
     "lodash": "^4.17.15",
     "xss": "^1.0.6",
